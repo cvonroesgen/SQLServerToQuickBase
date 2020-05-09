@@ -14,7 +14,7 @@ Public Class ValuesController
         Return New String() {"value1", "value2"}
     End Function
 
-    ' GET api/values/5
+    ' GET api/values/25
     Public Function GetValue(ByVal id As Integer) As HttpResponseMessage
         Dim localConnection As SqlConnection
         Dim queryCommand As SqlCommand

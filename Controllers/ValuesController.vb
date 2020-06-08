@@ -35,7 +35,7 @@ Public Class ValuesController
                 'Run the SQL statement, and then get the returned rows to the DataReader.
                 MyDataReader = .ExecuteReader()
                 Dim QuickBaseConnection As OdbcConnection = New OdbcConnection("DSN=demo.quickbase.com;")
-                insertCommand = New OdbcCommand("INSERT INTO bqhf6s6wp (Image, Image_ID) VALUES (?, ?)", QuickBaseConnection)
+                insertCommand = New OdbcCommand("INSERT INTO bqhf6s6wp (Image, Image_ID) VALUES (?, ?, ?)", QuickBaseConnection)
                 insertCommand.Connection.Open()
                 Dim insertTransaction As OdbcTransaction = QuickBaseConnection.BeginTransaction()
                 insertCommand.Transaction = insertTransaction
@@ -47,6 +47,8 @@ Public Class ValuesController
                         .Parameters("@Image").Value = imagePath
                         .Parameters.Add("@Image_ID", OdbcType.Double)
                         .Parameters("@Image_ID").Value = imageID
+                .Parameters.Add("@Patient_ID", OdbcType.Double)
+                .Parameters("@Patient_ID").Value = id
                         .CommandType = CommandType.Text
                         .ExecuteNonQuery()
                         .Parameters.Clear()
